@@ -4,7 +4,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 class RecipeListViewController: UIViewController {
-    private var recipes: [QueryDocumentSnapshot] = []
+    private var recipes: [FirestoreRecipe] = []
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private let recipeCollection = Firestore.firestore().collection("recipes")
@@ -26,7 +26,7 @@ class RecipeListViewController: UIViewController {
         refresh()
     }
 
-    func showRecipes(_ recipes: [QueryDocumentSnapshot]) {
+    func showRecipes(_ recipes: [FirestoreRecipe]) {
         self.recipes = recipes
         refreshControl.endRefreshing()
         tableView.reloadData()
@@ -43,12 +43,13 @@ class RecipeListViewController: UIViewController {
     @objc private func refresh() {
         refreshControl.beginRefreshing()
         
-        recipeCollection.order(by: "createdAt", descending: true).getDocuments() { [weak self] querySnapshot, error in
-            if let error = error {
-                self?.showError(error)
-            } else {
-                let recipes = querySnapshot!.documents
+        let dataStore = RecipeDataStore()
+        dataStore.fetchAllRecipes { [weak self] result in
+            switch result {
+            case let .success(recipes):
                 self?.showRecipes(recipes)
+            case let .failure(error):
+                self?.showError(error)
             }
         }
     }
@@ -61,9 +62,10 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let recipeID = recipes[indexPath.row].documentID
-        let vc = RecipeDetailsViewController(recipeID: recipeID)
-        navigationController?.pushViewController(vc, animated: true)
+        if let recipeID = recipes[indexPath.row].id {
+            let vc = RecipeDetailsViewController(recipeID: recipeID)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
