@@ -87,15 +87,7 @@ final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProt
     }
 
     func fetchRecipe() {
-        recipeReference.getDocument { [weak self] snapshot, error in
-            if let error = error {
-                self?.showError(error)
-            } else if let snapshot = snapshot {
-                self?.showRecipe(snapshot: snapshot)
-            } else {
-                fatalError()
-            }
-        }
+        presenter.refresh()
     }
 
     func showError(_ error: Error) {
