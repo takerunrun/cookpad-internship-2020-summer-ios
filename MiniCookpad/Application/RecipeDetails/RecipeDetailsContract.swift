@@ -8,6 +8,7 @@ protocol RecipeDetailsPresenterProtocol: AnyObject {
 }
 
 protocol RecipeDetailsInteractorProtocol: AnyObject {
+    func fetchRecipe(recipeID: String, completion: @escaping ((Result<RecipeDetailsRecipe, Error>) -> Void))
 }
 
 protocol RecipeDetailsWireframeProtocol: AnyObject {

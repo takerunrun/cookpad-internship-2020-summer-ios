@@ -5,4 +5,16 @@ class RecipeDetailsInteractor: RecipeDetailsInteractorProtocol {
     init(recipeDataStore: RecipeDataStoreProtocol) {
         self.recipeDataStore = recipeDataStore
     }
+    
+    func fetchRecipe(recipeID: String, completion: @escaping ((Result<RecipeDetailsRecipe, Error>) -> Void)) {
+        recipeDataStore.fetchRecipe(recipeID: recipeID) { result in
+            switch result {
+            case let .success(firestoreRecipe):
+                let recipe = RecipeDetailsRecipe(id: recipeID, title: firestoreRecipe.title, imagePath: firestoreRecipe.imagePath, steps: firestoreRecipe.steps)
+                completion(.success(recipe))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
