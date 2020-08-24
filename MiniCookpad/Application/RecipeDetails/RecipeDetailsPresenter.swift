@@ -24,6 +24,6 @@ class RecipeDetailsPresenter: RecipeDetailsPresenterProtocol {
     }
     
     func close() {
-        
+        wireframe.close()
     }
 }
