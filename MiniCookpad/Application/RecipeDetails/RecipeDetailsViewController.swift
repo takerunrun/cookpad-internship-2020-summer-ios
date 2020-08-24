@@ -93,7 +93,7 @@ final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProt
     func showError(_ error: Error) {
         let alertController = UIAlertController(title: "エラー", message: "レシピの取得に失敗しました。もう一度お試しください。\n\(error.localizedDescription)", preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "閉じる", style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
+            self?.presenter.close()
         }
         alertController.addAction(closeAction)
         present(alertController, animated: true, completion: nil)
