@@ -59,8 +59,7 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let recipeID = recipes[indexPath.row].id
-        let vc = RecipeDetailsViewController(recipeID: recipeID)
-        navigationController?.pushViewController(vc, animated: true)
+        presenter.openRecipeDetails(recipeID: recipeID)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
