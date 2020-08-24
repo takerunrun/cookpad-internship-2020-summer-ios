@@ -3,11 +3,16 @@ import Firebase
 import Foundation
 import FirebaseFirestoreSwift
 
-class RecipeListViewController: UIViewController {
+class RecipeListViewController: UIViewController, RecipeListViewProtocol {
     private var recipes: [FirestoreRecipe] = []
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private let recipeCollection = Firestore.firestore().collection("recipes")
+    private var presenter: RecipeListPresenterProtocol!
+    
+    func inject(presenter: RecipeListPresenterProtocol) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
