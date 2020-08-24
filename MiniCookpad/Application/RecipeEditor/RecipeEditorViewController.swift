@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import Photos
 
-class RecipeEditorViewController: UIViewController {
+class RecipeEditorViewController: UIViewController, RecipeEditorViewProtocol {
     private let recipeImageView = UIImageView()
     private let titleFieldView = UITextField()
     private let stepsView = StepsView()
