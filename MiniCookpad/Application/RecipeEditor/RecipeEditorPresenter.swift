@@ -19,6 +19,19 @@ class RecipeEditorPresenter: RecipeEditorPresenterProtocol {
     }
     
     func createRecipe(title: String?, steps: [String?], image: UIImage?) {
+        interactor.createRecipe(title: title, steps: steps, image: image) { [weak self] result in
+            switch result {
+            case .success:
+                self?.view.showComplete()
+            case let .failure(error):
+                switch error {
+                case .validationError:
+                    self?.view.showValidationError()
+                case let .creationError(error):
+                    self?.view.showError(error)
+                }
+            }
+        }
     }
     
     func close() {
