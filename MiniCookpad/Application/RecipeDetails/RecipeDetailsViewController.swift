@@ -21,7 +21,7 @@ final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProt
         }
     }
 
-    init(recipeID: String) {
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
