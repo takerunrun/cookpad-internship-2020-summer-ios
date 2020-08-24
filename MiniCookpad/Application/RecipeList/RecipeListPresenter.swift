@@ -15,7 +15,6 @@ class RecipeListPresenter: RecipeListPresenterProtocol {
             switch result {
             case let .success(recipes):
                 self?.view.showRecipes(recipes)
-                break
             case let .failure(error):
                 self?.view.showError(error)
             }
