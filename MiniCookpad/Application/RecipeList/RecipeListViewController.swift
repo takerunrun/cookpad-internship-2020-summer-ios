@@ -49,6 +49,10 @@ class RecipeListViewController: UIViewController, RecipeListViewProtocol {
         refreshControl.beginRefreshing()
         presenter.refresh()
     }
+    
+    @objc private func didTapPostRecipe() {
+        presenter.openRecipeEditor()
+    }
 }
 
 extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
