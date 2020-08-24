@@ -6,6 +6,7 @@ protocol RecipeListViewProtocol: AnyObject {
 
 protocol RecipeListPresenterProtocol: AnyObject {
     func refresh()
+    func openRecipeDetails(recipeID: String)
 }
 
 protocol RecipeListInteractorProtocol: AnyObject {
