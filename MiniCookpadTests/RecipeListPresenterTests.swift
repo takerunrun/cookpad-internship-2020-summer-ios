@@ -31,3 +31,26 @@ class MockRecipeListInteractor: RecipeListInteractorProtocol {
 class MockRecipeListWireframe: RecipeListWireframeProtocol {
     func openRecipeDetails(recipeID: String) { }
 }
+
+class RecipeListPresenterTests: XCTestCase {
+    var view: MockRecipeListViewController!
+    var interactor: MockRecipeListInteractor!
+    var wireframe: MockRecipeListWireframe!
+
+    // テストのたびに Mock の状態をリセットする
+    override func setUp() {
+        super.setUp()
+        view = MockRecipeListViewController()
+        interactor = MockRecipeListInteractor()
+        wireframe = MockRecipeListWireframe()
+    }
+
+    func testRefreshSucceeded() {
+        let recipes = [RecipeListRecipe(id: "1", title: "title", imagePath: "dummy_path", steps: [])]
+        interactor.fetchAllRecipesResult = .success(recipes)
+        let presenter = RecipeListPresenter(view: view, interactor: interactor, wireframe: wireframe)
+
+        presenter.refresh()
+        XCTAssertEqual(view.recipes, recipes)
+    }
+}
