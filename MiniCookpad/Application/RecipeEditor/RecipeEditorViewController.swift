@@ -7,6 +7,11 @@ class RecipeEditorViewController: UIViewController, RecipeEditorViewProtocol {
     private let titleFieldView = UITextField()
     private let stepsView = StepsView()
     private var postImage: UIImage?
+    private var presenter: RecipeEditorPresenterProtocol!
+    
+    func inject(presenter: RecipeEditorPresenterProtocol) {
+        self.presenter = presenter
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
