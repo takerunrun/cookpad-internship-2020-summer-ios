@@ -35,5 +35,6 @@ class RecipeEditorPresenter: RecipeEditorPresenterProtocol {
     }
     
     func close() {
+        wireframe.close()
     }
 }
