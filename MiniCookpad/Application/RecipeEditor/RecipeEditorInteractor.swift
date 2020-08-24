@@ -20,4 +20,9 @@ class RecipeEditorInteractor: RecipeEditorInteractorProtocol {
     func createRecipe(title: String?, steps: [String?], image: UIImage?, completion: @escaping ((Result<Void, RecipeEditorError>) -> Void)) {
         
     }
+    
+    private static func containsEmoji(text: String) -> Bool {
+        let emojis = text.unicodeScalars.filter { $0.properties.isEmoji }
+        return !emojis.isEmpty
+    }
 }
