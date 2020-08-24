@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol ImageDataStoreProtocol {
+    func createImage(imageData: Data, completion: @escaping ((Result<ImagePath, Error>) -> Void))
+}
