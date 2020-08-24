@@ -1,5 +1,7 @@
 
 protocol RecipeListViewProtocol: AnyObject {
+    func showRecipes(_ recipes: [RecipeListRecipe])
+    func showError(_ error: Error)
 }
 
 protocol RecipeListPresenterProtocol: AnyObject {

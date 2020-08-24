@@ -4,7 +4,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 class RecipeListViewController: UIViewController, RecipeListViewProtocol {
-    private var recipes: [FirestoreRecipe] = []
+    private var recipes: [RecipeListRecipe] = []
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private let recipeCollection = Firestore.firestore().collection("recipes")
@@ -31,7 +31,7 @@ class RecipeListViewController: UIViewController, RecipeListViewProtocol {
         refresh()
     }
 
-    func showRecipes(_ recipes: [FirestoreRecipe]) {
+    func showRecipes(_ recipes: [RecipeListRecipe]) {
         self.recipes = recipes
         refreshControl.endRefreshing()
         tableView.reloadData()
@@ -47,16 +47,7 @@ class RecipeListViewController: UIViewController, RecipeListViewProtocol {
     
     @objc private func refresh() {
         refreshControl.beginRefreshing()
-        
-        let dataStore = RecipeDataStore()
-        dataStore.fetchAllRecipes { [weak self] result in
-            switch result {
-            case let .success(recipes):
-                self?.showRecipes(recipes)
-            case let .failure(error):
-                self?.showError(error)
-            }
-        }
+        presenter.refresh()
     }
 }
 
@@ -67,10 +58,9 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let recipeID = recipes[indexPath.row].id {
-            let vc = RecipeDetailsViewController(recipeID: recipeID)
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let recipeID = recipes[indexPath.row].id
+        let vc = RecipeDetailsViewController(recipeID: recipeID)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

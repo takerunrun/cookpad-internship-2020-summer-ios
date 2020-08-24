@@ -42,7 +42,7 @@ final class RecipeTableViewCell: UITableViewCell {
         descriptionLabel.numberOfLines = 2
     }
     
-    func configure(recipe: FirestoreRecipe) {
+    func configure(recipe: RecipeListRecipe) {
         let placeholderImage = UIImage(systemName: "photo")
         // レシピ写真を Cloud Storage から取得して表示する
         let ref = Storage.storage().reference(withPath: recipe.imagePath)
