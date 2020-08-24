@@ -107,30 +107,24 @@ final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProt
         present(alertController, animated: true, completion: nil)
     }
 
-    func showRecipe(snapshot: DocumentSnapshot) {
-        guard let recipe = snapshot.data() else { return }
-        title = recipe["title"] as? String
-        titleLabel.text = recipe["title"] as? String
+    func showRecipe(_ recipe: RecipeDetailsRecipe) {
+        title = recipe.title
+        titleLabel.text = recipe.title
 
         let placeholderImage = UIImage(systemName: "photo")
         // レシピ写真を Cloud Storage から取得して表示する
-        if let path = recipe["imagePath"] as? String {
-            let ref = Storage.storage().reference(withPath: path)
-            recipeImageView.sd_setImage(with: ref, placeholderImage: placeholderImage)
-        } else {
-            recipeImageView.image = placeholderImage
-        }
-
-        if let steps = recipe["steps"] as? [String] {
-            steps.enumerated().forEach { index, step in
-                let label = UILabel()
-                label.text = "\(index + 1): \(step)"
-                label.font = UIFont.preferredFont(forTextStyle: .body)
-                label.textColor = .secondaryLabel
-                label.adjustsFontForContentSizeCategory = true
-                label.numberOfLines = 0
-                stepsStackView.addArrangedSubview(label)
-            }
+        let ref = Storage.storage().reference(withPath: recipe.imagePath)
+        recipeImageView.sd_setImage(with: ref, placeholderImage: placeholderImage)
+        
+        let steps = recipe.steps
+        steps.enumerated().forEach { index, step in
+            let label = UILabel()
+            label.text = "\(index + 1): \(step)"
+            label.font = UIFont.preferredFont(forTextStyle: .body)
+            label.textColor = .secondaryLabel
+            label.adjustsFontForContentSizeCategory = true
+            label.numberOfLines = 0
+            stepsStackView.addArrangedSubview(label)
         }
     }
 }
