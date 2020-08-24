@@ -4,12 +4,17 @@ import FirebaseStorage
 import FirebaseUI
 import Firebase
 
-final class RecipeDetailsViewController: UIViewController {
+final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProtocol {
     private let storage = Storage.storage()
     private let recipeImageView = UIImageView()
     private let titleLabel = UILabel()
     private let stepsStackView = UIStackView()
     private let recipeReference: DocumentReference
+    private var presenter: RecipeDetailsPresenterProtocol!
+    
+    func inject(presenter: RecipeDetailsPresenterProtocol) {
+        self.presenter = presenter
+    }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
