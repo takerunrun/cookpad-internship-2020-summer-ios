@@ -16,9 +16,9 @@ class RecipeDetailsPresenter: RecipeDetailsPresenterProtocol {
         interactor.fetchRecipe(recipeID: recipeID) { [weak self] result in
             switch result {
             case let .success(recipe):
-                break
+                self?.view.showRecipe(recipe)
             case let .failure(error):
-                break
+                self?.view.showError(error)
             }
         }
     }
