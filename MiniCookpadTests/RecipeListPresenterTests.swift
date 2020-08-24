@@ -53,4 +53,13 @@ class RecipeListPresenterTests: XCTestCase {
         presenter.refresh()
         XCTAssertEqual(view.recipes, recipes)
     }
+    
+    func testFetchRecipesFailure() {
+        let error = NSError(domain: "", code: 11111111, userInfo: nil)
+        interactor.fetchAllRecipesResult = .failure(error)
+        let presenter = RecipeListPresenter(view: view, interactor: interactor, wireframe: wireframe)
+
+        presenter.refresh()
+        XCTAssertEqual((view.error! as NSError), error)
+    }
 }
