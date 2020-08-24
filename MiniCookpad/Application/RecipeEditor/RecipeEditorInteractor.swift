@@ -6,4 +6,18 @@
 //  Copyright © 2020 kensuke-hoshikawa. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class RecipeEditorInteractor: RecipeEditorInteractorProtocol {
+    private let imageDataStore: ImageDataStoreProtocol
+    private let recipeDataStore: RecipeDataStoreProtocol
+    
+    init(imageDataStore: ImageDataStoreProtocol, recipeDataStore: RecipeDataStoreProtocol) {
+        self.imageDataStore = imageDataStore
+        self.recipeDataStore = recipeDataStore
+    }
+    
+    func createRecipe(title: String?, steps: [String?], image: UIImage?, completion: @escaping ((Result<Void, RecipeEditorError>) -> Void)) {
+        
+    }
+}
