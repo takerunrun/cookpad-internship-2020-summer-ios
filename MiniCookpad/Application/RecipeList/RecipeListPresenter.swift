@@ -14,11 +14,10 @@ class RecipeListPresenter: RecipeListPresenterProtocol {
         interactor.fetchAllRecipes { [weak self] result in
             switch result {
             case let .success(recipes):
-                // TODO:
+                self?.view.showRecipes(recipes)
                 break
             case let .failure(error):
-                // TODO:
-                break
+                self?.view.showError(error)
             }
         }
     }
