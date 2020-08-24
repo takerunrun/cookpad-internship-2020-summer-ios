@@ -18,6 +18,9 @@ class RecipeListViewController: UIViewController, RecipeListViewProtocol {
         super.viewDidLoad()
         
         setUpDummyDataButton()
+        
+        let postButton = UIBarButtonItem(title: "レシピ投稿する", style: .plain, target: self, action: #selector(didTapPostRecipe))
+        navigationItem.rightBarButtonItem = postButton
 
         title = "レシピ一覧"
         
