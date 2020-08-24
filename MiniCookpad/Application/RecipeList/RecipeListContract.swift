@@ -13,4 +13,5 @@ protocol RecipeListInteractorProtocol: AnyObject {
 }
 
 protocol RecipeListWireframeProtocol: AnyObject {
+    func openRecipeDetails(recipeID: String)
 }
