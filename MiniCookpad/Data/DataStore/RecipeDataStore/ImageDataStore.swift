@@ -16,8 +16,8 @@ protocol ImageDataStoreProtocol {
 struct ImageDataStore: ImageDataStoreProtocol {
     private let storageReference: StorageReference
     
-    init(storageReference: StorageReference) {
-        self.storageReference = storageReference
+    init() {
+        self.storageReference = Storage.storage().reference()
     }
     
     func createImage(imageData: Data, completion: @escaping ((Result<ImagePath, Error>) -> Void)) {
