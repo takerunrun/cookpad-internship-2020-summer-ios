@@ -24,4 +24,8 @@ class RecipeListPresenter: RecipeListPresenterProtocol {
     func openRecipeDetails(recipeID: String) {
         wireframe.openRecipeDetails(recipeID: recipeID)
     }
+    
+    func openRecipeEditor() {
+        wireframe.openRecipeEditor()
+    }
 }
