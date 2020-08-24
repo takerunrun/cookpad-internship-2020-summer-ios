@@ -9,4 +9,17 @@ class RecipeListPresenter: RecipeListPresenterProtocol {
         self.interactor = interactor
         self.wireframe = wireframe
     }
+    
+    func refresh() {
+        interactor.fetchAllRecipes { [weak self] result in
+            switch result {
+            case let .success(recipes):
+                // TODO:
+                break
+            case let .failure(error):
+                // TODO:
+                break
+            }
+        }
+    }
 }

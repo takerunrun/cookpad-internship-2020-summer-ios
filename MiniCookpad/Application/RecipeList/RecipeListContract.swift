@@ -3,6 +3,7 @@ protocol RecipeListViewProtocol: AnyObject {
 }
 
 protocol RecipeListPresenterProtocol: AnyObject {
+    func refresh()
 }
 
 protocol RecipeListInteractorProtocol: AnyObject {
