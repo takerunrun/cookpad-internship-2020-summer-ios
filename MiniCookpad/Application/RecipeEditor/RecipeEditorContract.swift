@@ -6,4 +6,14 @@
 //  Copyright © 2020 kensuke-hoshikawa. All rights reserved.
 //
 
-import Foundation
+protocol RecipeEditorViewProtocol: AnyObject {
+}
+
+protocol RecipeEditorPresenterProtocol: AnyObject {
+}
+
+protocol RecipeEditorInteractorProtocol: AnyObject {
+}
+
+protocol RecipeEditorWireframeProtocol: AnyObject {
+}
