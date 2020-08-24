@@ -7,4 +7,8 @@ class RecipeDetailsWireframe: RecipeDetailsWireframeProtocol {
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
+    
+    func close() {
+        viewController.navigationController?.popViewController(animated: true)
+    }
 }

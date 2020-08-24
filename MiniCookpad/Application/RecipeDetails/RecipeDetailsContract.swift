@@ -14,4 +14,5 @@ protocol RecipeDetailsInteractorProtocol: AnyObject {
 }
 
 protocol RecipeDetailsWireframeProtocol: AnyObject {
+    func close()
 }
