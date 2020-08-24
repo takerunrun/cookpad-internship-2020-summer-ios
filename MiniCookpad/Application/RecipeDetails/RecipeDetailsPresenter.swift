@@ -13,7 +13,14 @@ class RecipeDetailsPresenter: RecipeDetailsPresenterProtocol {
     }
     
     func refresh() {
-        
+        interactor.fetchRecipe(recipeID: recipeID) { [weak self] result in
+            switch result {
+            case let .success(recipe):
+                break
+            case let .failure(error):
+                break
+            }
+        }
     }
     
     func close() {
