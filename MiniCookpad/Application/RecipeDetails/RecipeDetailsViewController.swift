@@ -5,11 +5,9 @@ import FirebaseUI
 import Firebase
 
 final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProtocol {
-    private let storage = Storage.storage()
     private let recipeImageView = UIImageView()
     private let titleLabel = UILabel()
     private let stepsStackView = UIStackView()
-    private let recipeReference: DocumentReference
     private var presenter: RecipeDetailsPresenterProtocol!
     
     func inject(presenter: RecipeDetailsPresenterProtocol) {
@@ -24,7 +22,6 @@ final class RecipeDetailsViewController: UIViewController, RecipeDetailsViewProt
     }
 
     init(recipeID: String) {
-        self.recipeReference = Firestore.firestore().collection("recipes").document(recipeID)
         super.init(nibName: nil, bundle: nil)
     }
 
