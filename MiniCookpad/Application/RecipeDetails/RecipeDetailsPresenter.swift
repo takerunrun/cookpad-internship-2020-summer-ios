@@ -9,4 +9,12 @@ class RecipeDetailsPresenter: RecipeDetailsPresenterProtocol {
         self.interactor = interactor
         self.wireframe = wireframe
     }
+    
+    func refresh() {
+        
+    }
+    
+    func close() {
+        
+    }
 }
