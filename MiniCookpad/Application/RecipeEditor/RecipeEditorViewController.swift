@@ -87,10 +87,11 @@ class RecipeEditorViewController: UIViewController, RecipeEditorViewProtocol {
     }
 
     @objc private func tapPost() {
-//        let title = titleFieldView.text
-//        let steps = stepsView.getSteps()
-//        let image = postImage
+        let title = titleFieldView.text
+        let steps = stepsView.getSteps()
+        let image = postImage
         // TODO: レシピ作成
+        presenter.createRecipe(title: title, steps: steps, image: image)
     }
 
     @objc private func tapClose() {
