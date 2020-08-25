@@ -60,7 +60,7 @@ class RecipeEditorViewController: UIViewController, RecipeEditorViewProtocol {
         titleLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 16).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16).isActive = true
         titleLabel.text = "レシピのタイトル"
-        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
 
         scrollView.addSubview(titleFieldView)
         titleFieldView.translatesAutoresizingMaskIntoConstraints = false
@@ -190,7 +190,7 @@ final class StepsView: UIStackView {
 
         let stepLabel = UILabel()
         stepLabel.text = "手順"
-        stepLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        stepLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         addArrangedSubview(stepLabel)
 
         button.addTarget(self, action: #selector(addStep), for: .touchUpInside)
